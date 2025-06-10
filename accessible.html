@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessible Web Design - Lesson 3 ARIA</title>
-    <meta name="description" content="A demonstration of accessible web design principles including ARIA, semantic HTML, and proper contrast">
+    <meta name="description" content="Lesson on ARIA and web accessibility">
+    <title>Accessible Web Design</title>
     <link rel="stylesheet" href="accessible.css">
   </head>
   <body>
@@ -13,7 +13,7 @@
     <header role="banner">
       <nav role="navigation" aria-label="Main navigation">
         <ul>
-          <li><a href="#home">Home</a></li>
+          <li><a href="#home" aria-current="page">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -22,79 +22,64 @@
     </header>
     
     <main id="main-content" role="main">
+      <h1>Accessible Form Example</h1>
+      
       <section aria-labelledby="form-heading">
-        <h1 id="form-heading">Contact Form</h1>
+        <h2 id="form-heading">User Information</h2>
         
-        <form id="contact-form" aria-label="Contact information">
-          <fieldset>
-            <legend>Personal Information</legend>
-            
-            <div class="form-group">
-              <label for="username">Username: <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="username" name="username" required
-                     aria-required="true" aria-describedby="username-help">
-              <small id="username-help" class="help-text">Must be at least 6 characters</small>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email: <span class="required" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" 
-                     aria-required="true" aria-describedby="emailHelp" required>
-              <small id="emailHelp" class="help-text">We'll never share your email with anyone else.</small>
-            </div>
-            
-            <div class="form-group">
-              <label for="phone">Phone Number (optional):</label>
-              <input type="tel" id="phone" name="phone" 
-                     aria-describedby="phoneHelp" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
-              <small id="phoneHelp" class="help-text">Format: 123-456-7890</small>
-            </div>
-          </fieldset>
-          
-          <fieldset>
-            <legend>Preferences</legend>
-            
-            <div class="form-group">
-              <p id="newsletter-label">Would you like to receive our newsletter?</p>
-              <div role="group" aria-labelledby="newsletter-label">
-                <label>
-                  <input type="radio" name="newsletter" value="yes"> Yes
-                </label>
-                <label>
-                  <input type="radio" name="newsletter" value="no"> No
-                </label>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="comments">Additional Comments:</label>
-              <textarea id="comments" name="comments" 
-                        aria-describedby="commentsHelp"></textarea>
-              <small id="commentsHelp" class="help-text">Maximum 500 characters</small>
-            </div>
-          </fieldset>
-          
-          <div class="form-actions">
-            <button type="submit" class="primary-button">Submit</button>
-            <button type="reset" class="secondary-button">Reset Form</button>
+        <form id="userForm" novalidate>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required 
+                   aria-required="true" aria-describedby="usernameHelp">
+            <small id="usernameHelp" class="help-text">Must be at least 4 characters long</small>
           </div>
           
-          <div role="alert" aria-live="assertive" class="visually-hidden" id="form-feedback">
-            Form submitted successfully!
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" 
+                   aria-describedby="emailHelp" required aria-required="true">
+            <small id="emailHelp" class="help-text">We'll never share your email with anyone else.</small>
           </div>
+          
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required 
+                   aria-required="true" aria-describedby="passwordHelp">
+            <small id="passwordHelp" class="help-text">Must contain at least 8 characters</small>
+          </div>
+          
+          <div class="form-group">
+            <fieldset>
+              <legend>Subscribe to newsletter</legend>
+              <input type="checkbox" id="newsletter" name="newsletter">
+              <label for="newsletter">Yes, I want to receive updates</label>
+            </fieldset>
+          </div>
+          
+          <button type="submit" role="button" aria-label="Click to submit the form" class="submit-btn">
+            Submit
+          </button>
+          
+          <div role="alert" aria-live="assertive" id="formFeedback" class="visually-hidden"></div>
         </form>
+      </section>
+      
+      <section aria-labelledby="image-heading">
+        <h2 id="image-heading">Accessible Image Example</h2>
+        <figure>
+          <img src="images/access-concept.png" 
+               alt="Example placeholder image showing accessibility concepts" 
+               width="500" height="300">
+          <figcaption>An example image demonstrating proper alt text usage</figcaption>
+        </figure>
       </section>
     </main>
     
     <footer role="contentinfo" aria-label="Footer">
       <p>&copy; 2025 Accessible Web Design. All rights reserved.</p>
-      <nav aria-label="Footer navigation">
-        <ul>
-          <li><a href="#privacy">Privacy Policy</a></li>
-          <li><a href="#terms">Terms of Service</a></li>
-          <li><a href="#accessibility">Accessibility Statement</a></li>
-        </ul>
-      </nav>
     </footer>
+    
+    <script src="accessible.js"></script>
   </body>
 </html>
