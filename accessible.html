@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Web Design - Lesson 3 ARIA</title>
+    <meta name="description" content="A demonstration of accessible web design principles including ARIA, semantic HTML, and proper contrast">
+    <link rel="stylesheet" href="accessible.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    
+    <header role="banner">
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main id="main-content" role="main">
+      <section aria-labelledby="form-heading">
+        <h1 id="form-heading">Contact Form</h1>
+        
+        <form id="contact-form" aria-label="Contact information">
+          <fieldset>
+            <legend>Personal Information</legend>
+            
+            <div class="form-group">
+              <label for="username">Username: <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="username" name="username" required
+                     aria-required="true" aria-describedby="username-help">
+              <small id="username-help" class="help-text">Must be at least 6 characters</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email: <span class="required" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" 
+                     aria-required="true" aria-describedby="emailHelp" required>
+              <small id="emailHelp" class="help-text">We'll never share your email with anyone else.</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number (optional):</label>
+              <input type="tel" id="phone" name="phone" 
+                     aria-describedby="phoneHelp" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+              <small id="phoneHelp" class="help-text">Format: 123-456-7890</small>
+            </div>
+          </fieldset>
+          
+          <fieldset>
+            <legend>Preferences</legend>
+            
+            <div class="form-group">
+              <p id="newsletter-label">Would you like to receive our newsletter?</p>
+              <div role="group" aria-labelledby="newsletter-label">
+                <label>
+                  <input type="radio" name="newsletter" value="yes"> Yes
+                </label>
+                <label>
+                  <input type="radio" name="newsletter" value="no"> No
+                </label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="comments">Additional Comments:</label>
+              <textarea id="comments" name="comments" 
+                        aria-describedby="commentsHelp"></textarea>
+              <small id="commentsHelp" class="help-text">Maximum 500 characters</small>
+            </div>
+          </fieldset>
+          
+          <div class="form-actions">
+            <button type="submit" class="primary-button">Submit</button>
+            <button type="reset" class="secondary-button">Reset Form</button>
+          </div>
+          
+          <div role="alert" aria-live="assertive" class="visually-hidden" id="form-feedback">
+            Form submitted successfully!
+          </div>
+        </form>
+      </section>
+    </main>
+    
+    <footer role="contentinfo" aria-label="Footer">
+      <p>&copy; 2025 Accessible Web Design. All rights reserved.</p>
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Service</a></li>
+          <li><a href="#accessibility">Accessibility Statement</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
